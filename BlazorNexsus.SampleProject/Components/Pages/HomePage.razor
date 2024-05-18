@@ -1,0 +1,11 @@
+﻿@page "/"
+@using BlazorNexsus.Navigation.Abstractions
+@inject INavigationManager<Routes> _navigationManager
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button @onclick="() => _navigationManager.GoWithBack(Routes.CounterPage, Routes.HomePage)">Go Counter With Back Option</button>
