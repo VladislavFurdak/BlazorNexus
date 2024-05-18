@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyBlazor.Navigation", "EasyBlazor.Navigation\EasyBlazor.Navigation.csproj", "{252D67EE-BD84-4A68-A478-191C5C3E32D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyBlazor.SampleProject", "EasyBlazor.SampleProject\EasyBlazor.SampleProject.csproj", "{2F31D564-5215-4689-81F4-A535473986C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{252D67EE-BD84-4A68-A478-191C5C3E32D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252D67EE-BD84-4A68-A478-191C5C3E32D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252D67EE-BD84-4A68-A478-191C5C3E32D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252D67EE-BD84-4A68-A478-191C5C3E32D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F31D564-5215-4689-81F4-A535473986C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F31D564-5215-4689-81F4-A535473986C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F31D564-5215-4689-81F4-A535473986C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F31D564-5215-4689-81F4-A535473986C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
