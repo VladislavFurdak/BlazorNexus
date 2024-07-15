@@ -18,7 +18,9 @@ namespace BlazorNexsus.Navigation
         }
 
         public static void AddEasyBlazorNavigationManager<T>(
-            this IServiceCollection services) where T : struct, Enum
+            this IServiceCollection services, 
+            bool forcePagePostfixCheck = true,
+            bool forceCheckUnusedKeys = true) where T : struct, Enum
         {
             DI.RegisterServices<T>();
             services.AddScoped<INavigationManager<T>, NavigationManagerExt<T>>(provider =>
@@ -28,14 +30,14 @@ namespace BlazorNexsus.Navigation
 
         public static void AddEasyBlazorNavigationManager<T>(
             this IServiceCollection services,
-            Assembly assemblyWithViews) where T : struct, Enum
+            Assembly assemblyWithViews, bool forcePagePostfixCheck = true) where T : struct, Enum
         {
             AddEasyBlazorNavigationManager<T>(services, new[] {assemblyWithViews});
         }
 
         public static void AddEasyBlazorNavigationManager<T>(
             this IServiceCollection services,
-            Type anyAssemblyType) where T : struct, Enum
+            Type anyAssemblyType, bool forcePagePostfixCheck = true) where T : struct, Enum
         {
             AddEasyBlazorNavigationManager<T>(services, new[] {Assembly.GetAssembly(anyAssemblyType)});
         }

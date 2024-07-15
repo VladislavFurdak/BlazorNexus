@@ -8,4 +8,17 @@
 
 Welcome to your new app.
 
-<button @onclick="() => _navigationManager.GoWithBack(Routes.CounterPage, Routes.HomePage)">Go Counter With Back Option</button>
+<button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter With Back Option</button>
+<button @onclick="() => _navigationManager.Go(Routes.CounterPage, _navigationManager.CurrentPage)">Go Counter With Back Option</button>
+<button @onclick="OpenCounterPage">Go Counter With Back Option</button>
+                            
+                            
+ @code{
+     void OpenCounterPage()
+     {
+         _navigationManager.Go(Routes.CounterPage,
+             _navigationManager.CurrentPage,
+             null,
+             new() {{"param", "value"}});
+     } 
+}

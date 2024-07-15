@@ -1,4 +1,5 @@
 ﻿using BlazorNexsus.Navigation.DTOs;
+using Microsoft.AspNetCore.Components.Routing;
 
 namespace BlazorNexsus.Navigation.Abstractions;
 
@@ -11,13 +12,11 @@ public interface INavigationManager<T> where T : struct, Enum
     /// <param name="navigationParams"></param>
     /// <param name="queryParams"></param>
     /// <returns></returns>
-    void Go(T pageKey, 
-        Dictionary<string, string>? navigationParams = null,
-        Dictionary<string, string>? queryParams = null);
+    void Go(T pageKey);
 
-    public void GoWithBack(
+    public void Go(
         T pageKey,
-        T backPage,
+        T? backPage = null,
         Dictionary<string, string>? navigationParams = null,
         Dictionary<string, string>? queryParams = null);
     
@@ -31,13 +30,13 @@ public interface INavigationManager<T> where T : struct, Enum
     /// </summary>
     /// <param name="fallBackPageKey"></param>
     /// <returns></returns>
-    void Back(T fallBackPageKey, bool includePreviousQueryString = true);
+    void Back(T fallBackPageKey, bool preserveQueryString = true);
     
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    Task Refresh();
+    Task Refresh(bool browserReload);
     
     /// <summary>
     /// 
@@ -48,14 +47,14 @@ public interface INavigationManager<T> where T : struct, Enum
     /// 
     /// </summary>
     IReadOnlyDictionary<T, string> Routes { get; }
-    
+
     /// <summary>
     /// 
     /// </summary>
-    IReadOnlyList<NavigationInfo> History { get; }
-    
+    Task<NavigationInfo<T>> PreviousPage { get; }
+
     /// <summary>
     /// 
     /// </summary>
-    Task<NavigationInfo> PreviousPage { get; }
+    event EventHandler<LocationChangedEventArgs> LocationChanged;
 }
