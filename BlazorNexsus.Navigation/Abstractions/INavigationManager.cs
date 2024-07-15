@@ -1,24 +1,19 @@
 ﻿using BlazorNexsus.Navigation.DTOs;
+using BlazorNexsus.Navigation.Models;
 using Microsoft.AspNetCore.Components.Routing;
 
 namespace BlazorNexsus.Navigation.Abstractions;
 
 public interface INavigationManager<T> where T : struct, Enum
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="pageKey"></param>
-    /// <param name="navigationParams"></param>
-    /// <param name="queryParams"></param>
-    /// <returns></returns>
-    void Go(T pageKey);
+    Task Go(T pageKey, NexusNavigationOptions<T>? options = null);
 
-    public void Go(
+    Task Go(
         T pageKey,
+        bool newTab,
         T? backPage = null,
-        Dictionary<string, string>? navigationParams = null,
-        Dictionary<string, string>? queryParams = null);
+        IReadOnlyDictionary<string, string>? navigationParams = null,
+        IReadOnlyDictionary<string, string>? queryParams = null);
     
     /// <summary>
     /// 
