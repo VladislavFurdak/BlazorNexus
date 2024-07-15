@@ -1,12 +1,14 @@
-﻿using System.Text.RegularExpressions;
-using BlazorNexsus.Navigation.Internal;
+﻿using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
+
+[assembly: InternalsVisibleTo("BlazorNexus.UnitTests")]
 
 namespace BlazorNexsus.Navigation;
 
 internal static class UriUtils
 {
-    private static string ReplaceRoutParams(string sourceRouteUri, IReadOnlyDictionary<string, string> queryParams)
+    public static string ReplaceRouteParams(string sourceRouteUri, IReadOnlyDictionary<string, string> queryParams)
     {
         var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?}";
         var result = Regex.Matches(sourceRouteUri, routeParamTemplate);
@@ -26,20 +28,16 @@ internal static class UriUtils
         return sourceRouteUri.TrimEnd('/');
     }
 
-    public static string GetUri<T>(
-        IReadOnlyDictionary<T, RouteInfoDTO> _routes,
+    public static string ComposeUri(
+        string uri,
         NavigationManager _navigationManager,
-        T pageKey,
-        bool newTab = false,
-        T? backPage = null,
         IReadOnlyDictionary<string, string>? navigationParams = null,
-        IReadOnlyDictionary<string, string>? queryParams = null) where T : struct, Enum
+        IReadOnlyDictionary<string, string>? queryParams = null) 
     {
-        var uri = _routes[pageKey].Route;
 
         if (navigationParams != null)
         {
-            uri = ReplaceRoutParams(uri, navigationParams);
+            uri = ReplaceRouteParams(uri, navigationParams);
         }
         
         if (queryParams != null)
@@ -50,5 +48,11 @@ internal static class UriUtils
         }
 
         return uri;
+    }
+
+    public static string ExtractQueryString(string uri)
+    {
+        var uriObj = new System.Uri(uri);
+        return uriObj.Query.Replace("?", "");
     }
 }

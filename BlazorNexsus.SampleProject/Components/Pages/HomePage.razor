@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using BlazorNexsus.Navigation.Abstractions
+@using BlazorNexsus.Navigation.Models
 @inject INavigationManager<Routes> _navigationManager
 
 <PageTitle>Home</PageTitle>
@@ -8,17 +9,6 @@
 
 Welcome to your new app.
 
-<button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter With Back Option</button>
-<button @onclick="() => _navigationManager.Go(Routes.CounterPage, _navigationManager.CurrentPage)">Go Counter With Back Option</button>
-<button @onclick="OpenCounterPage">Go Counter With Back Option</button>
-                            
-                            
- @code{
-     void OpenCounterPage()
-     {
-         _navigationManager.Go(Routes.CounterPage,
-             _navigationManager.CurrentPage,
-             null,
-             new() {{"param", "value"}});
-     } 
-}
+<button @onclick="() => _navigationManager.Go(Routes.CounterPage,new NexusNavigationOptions<Routes>{BackPage = Routes.HomePage} )">Go Counter With Back Option</button>
+<button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
+<button @onclick="() => _navigationManager.Go(Routes.CounterPage,true)">Go Counter on new tab</button>

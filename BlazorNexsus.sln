@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNexsus.Navigation", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNexsus.SampleProject", "BlazorNexsus.SampleProject\BlazorNexsus.SampleProject.csproj", "{2F31D564-5215-4689-81F4-A535473986C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNexus.UnitTests", "BlazorNexus.UnitTests\BlazorNexus.UnitTests.csproj", "{B28A1DBD-885C-47C5-8949-53DBA3CBE67A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2F31D564-5215-4689-81F4-A535473986C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F31D564-5215-4689-81F4-A535473986C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F31D564-5215-4689-81F4-A535473986C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28A1DBD-885C-47C5-8949-53DBA3CBE67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28A1DBD-885C-47C5-8949-53DBA3CBE67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28A1DBD-885C-47C5-8949-53DBA3CBE67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28A1DBD-885C-47C5-8949-53DBA3CBE67A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

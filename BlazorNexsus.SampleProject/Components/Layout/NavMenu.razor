@@ -39,6 +39,14 @@
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+    protected override void OnInitialized()
+    {
+        _navigitaionManager.LocationChanged += (obj,args) =>
+        {
+            StateHasChanged();
+        };
+    }
+    
     private string GetActiveClassFor(Routes activePage)
     {
         return _navigitaionManager.CurrentPage == activePage ? "active" : "";

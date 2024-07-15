@@ -10,18 +10,23 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-@if (_navigationManager.HasBackPage)
+@if (hasBackPage)
 {
     <button class="btn btn-primary" @onclick="GoBack">Go Back</button>
-
 }
 
 @code {
     private int currentCount = 0;
-
+    private bool hasBackPage = false;
+    
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        hasBackPage = await _navigationManager.HasBackPage();
     }
     
     private void GoBack()

@@ -14,18 +14,18 @@ public interface INavigationManager<T> where T : struct, Enum
         T? backPage = null,
         IReadOnlyDictionary<string, string>? navigationParams = null,
         IReadOnlyDictionary<string, string>? queryParams = null);
-    
+
     /// <summary>
     /// 
     /// </summary>
-    bool HasBackPage { get; }
+    Task<bool> HasBackPage();
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="fallBackPageKey"></param>
     /// <returns></returns>
-    void Back(T fallBackPageKey, bool preserveQueryString = true);
+    Task Back(T fallBackPageKey, bool preserveQueryString = true);
     
     /// <summary>
     /// 
