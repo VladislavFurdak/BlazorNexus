@@ -38,7 +38,7 @@ public static async Task Main(string[] args)
 
 ## Usage (Blazor WebAssembly)
 
-1. Create an Enum that keeps your pages (same name as *.razor files):
+Create an Enum that keeps your pages (same name as *.razor files):
 
 ```c#
 public enum Routes
@@ -58,7 +58,9 @@ But, be sure, that
 2. The Name is the same as for Enum
 3. The *.razor files have a mandatory "Page" postfix. 
 
-2. add INavigationManager in your razor views
+And add INavigationManager<Routes> in your razor views
+
+## Examples of usage
 
 ```c#
 @using BlazorNexsus.Navigation
@@ -122,6 +124,37 @@ And on the Special Offer page:
 }
 
 ```
+
+Another example of creating a menu with an active element:
+```c#
+@using BlazorNexsus.Navigation
+@inject INavigationManager<Routes> _navigitaionManager
+
+<div class="nav-item px-3">
+    <a @onclick="() => _navigitaionManager.Go(Routes.HomePage)"
+        class="@GetActiveClassFor(Routes.HomePage) nav-link">
+        <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
+    </a>
+</div>
+<div class="nav-item px-3">
+    <a @onclick="() => _navigitaionManager.Go(Routes.CounterPage)"
+         class="@GetActiveClassFor(Routes.CounterPage) nav-link">
+        <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Counter
+    </a>
+ </div>
+
+
+@code{
+    private string GetActiveClassFor(Routes activePage)
+    {
+        return _navigitaionManager.CurrentPage == activePage ? "active" : string.Empty;
+    }
+
+}
+
+```
+
+## Full API specification
 
 Thanks for dontas:
 
