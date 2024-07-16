@@ -113,14 +113,14 @@ And on the Special Offer page:
 }
 
 @code {
-    private bool hasBackPage = false;
-    private string utm_campaign = string.empty;
+        private bool hasBackPage = false;
+        private string utm_campaign = string.empty;
 
-    protected override async Task OnInitializedAsync()
-    {
-        hasBackPage = await _navigationManager.HasBackPage();
-        utm_campaign = _navigationManager.GetQueryStringParam<string>("utm_campaign");
-    }
+        protected override async Task OnInitializedAsync()
+        {
+            hasBackPage = await _navigationManager.HasBackPage();
+            utm_campaign = _navigationManager.GetQueryStringParam<string>("utm_campaign");
+        }
 }
 
 ```
@@ -131,30 +131,48 @@ Another example of creating a menu with an active element:
 @inject INavigationManager<Routes> _navigitaionManager
 
 <div class="nav-item px-3">
-    <a @onclick="() => _navigitaionManager.Go(Routes.HomePage)"
-        class="@GetActiveClassFor(Routes.HomePage) nav-link">
+    <a @onclick="() => _navigitaionManager.Go(Routes.HomePage)" class="@GetActiveClassFor(Routes.HomePage) nav-link">
         <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
     </a>
 </div>
 <div class="nav-item px-3">
-    <a @onclick="() => _navigitaionManager.Go(Routes.CounterPage)"
-         class="@GetActiveClassFor(Routes.CounterPage) nav-link">
-        <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Counter
+    <a @onclick="() => _navigitaionManager.Go(Routes.Cart)" class="@GetActiveClassFor(Routes.Cart) nav-link">
+        <span class="bi bi-cart-check-fill" aria-hidden="true"></span> Cart
     </a>
  </div>
 
 
 @code{
-    private string GetActiveClassFor(Routes activePage)
-    {
-        return _navigitaionManager.CurrentPage == activePage ? "active" : string.Empty;
-    }
-
+        private string GetActiveClassFor(Routes activePage)
+        {
+            return _navigitaionManager.CurrentPage == activePage ? "active" : string.Empty;
+        }
 }
 
 ```
 
 ## Full API specification
+INavigationManager<T>:
+
+* Go(pageKey);
+* Go(options);
+* Go(pageKey, newTab, backPage, navigationParams, queryParams);
+* HasBackPage();
+* Back(fallBackPageKey, preserveQueryString);
+* Refresh(browserReload);
+* CurrentPage
+* Routes
+* event LocationChanged
+* GetQueryStringParam(key)
+
+There are 2 optional parameters on registration (true is the default):
+
+builder.Services.AddBlazorNexusNavigation<Routes>(
+    pagePostfixCheck: true,
+    checkUnusedKeys: true);
+
+* pagePostfixCheck - Rises an exception if a razor Page with the @page attribute doesn't have a "Page" postfix in the filename.
+* checkUnusedKeys - Rises an exception if some of the Enums don't have appropriate pages.
 
 Thanks for dontas:
 
