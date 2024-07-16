@@ -2,7 +2,7 @@
 
 namespace BlazorNexsus.Navigation.Repositories;
 
-public class BackPageRepository<T> : IBackPageRepository<T> where T : struct, Enum 
+internal class BackPageRepository<T> : IBackPageRepository<T> where T : struct, Enum 
 {
     private string backPageKey = "backPageKey";
 

@@ -1,4 +1,4 @@
-﻿namespace BlazorNexsus.Navigation.Models;
+﻿namespace BlazorNexsus.Navigation;
 
 public class NexusNavigationOptions<T> where T : Enum
 {

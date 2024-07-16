@@ -1,6 +1,6 @@
-namespace BlazorNexsus.Navigation;
+﻿namespace BlazorNexsus.Navigation.Utils;
 
-internal static class NavigationManagerExtensions
+internal static class TypesUtils
 {
     public static bool InheritsFrom(this Type t, Type baseType)
     {

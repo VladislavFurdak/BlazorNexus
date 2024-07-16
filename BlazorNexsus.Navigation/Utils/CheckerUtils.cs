@@ -1,10 +1,9 @@
-﻿using System.Data;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorNexsus.Navigation;
+namespace BlazorNexsus.Navigation.Utils;
 
-public static class CheckerUtils
+internal static class CheckerUtils
 {
     public static void CheckPagesPostfixes(Assembly targetAssembly)
     {

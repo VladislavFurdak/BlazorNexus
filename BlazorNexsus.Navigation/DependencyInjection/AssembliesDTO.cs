@@ -2,7 +2,7 @@
 
 namespace BlazorNexsus.Navigation.Abstractions;
 
-public class AssembliesDTO
+internal class AssembliesDTO
 {
     public IEnumerable<Assembly> AssembliesWithViews { get; set; }
 }

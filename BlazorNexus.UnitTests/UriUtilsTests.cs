@@ -1,4 +1,5 @@
 using BlazorNexsus.Navigation;
+using BlazorNexsus.Navigation.Utils;
 using FluentAssertions;
 
 namespace UnitTests;

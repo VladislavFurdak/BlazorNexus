@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
+using BlazorNexsus.Navigation.Utils;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorNexsus.Navigation.Internal;
+namespace BlazorNexsus.Navigation.URIMapping;
 
-public static class RouteMapper
+internal static class RouteMapper
 {
     public static IReadOnlyDictionary<T, RouteInfoDTO> MapRoutes<T>(IEnumerable<Assembly> lookupAssemblies) 
         where T : struct, Enum

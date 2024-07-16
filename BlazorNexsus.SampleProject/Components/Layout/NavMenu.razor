@@ -1,4 +1,4 @@
-﻿@using BlazorNexsus.Navigation.Abstractions
+﻿@using BlazorNexsus.Navigation
 @inject INavigationManager<Routes> _navigitaionManager
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -41,6 +41,7 @@
 
     protected override void OnInitialized()
     {
+        //To update active element in left-side menu after _navigitaionManager.CurrentPage is changed
         _navigitaionManager.LocationChanged += (obj,args) =>
         {
             StateHasChanged();
@@ -49,7 +50,7 @@
     
     private string GetActiveClassFor(Routes activePage)
     {
-        return _navigitaionManager.CurrentPage == activePage ? "active" : "";
+        return _navigitaionManager.CurrentPage == activePage ? "active" : string.Empty;
     }
 
     private void ToggleNavMenu()

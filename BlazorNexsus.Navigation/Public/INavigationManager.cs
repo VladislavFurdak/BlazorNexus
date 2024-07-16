@@ -1,8 +1,6 @@
-﻿using BlazorNexsus.Navigation.DTOs;
-using BlazorNexsus.Navigation.Models;
-using Microsoft.AspNetCore.Components.Routing;
+﻿using Microsoft.AspNetCore.Components.Routing;
 
-namespace BlazorNexsus.Navigation.Abstractions;
+namespace BlazorNexsus.Navigation;
 
 public interface INavigationManager<T> where T : struct, Enum
 {
@@ -44,11 +42,6 @@ public interface INavigationManager<T> where T : struct, Enum
     /// 
     /// </summary>
     IReadOnlyDictionary<T, string> Routes { get; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    Task<NavigationInfo<T>> PreviousPage { get; }
 
     /// <summary>
     /// 

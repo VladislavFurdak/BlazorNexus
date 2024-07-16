@@ -1,9 +1,6 @@
-﻿using System.Reflection;
-using BlazorNexsus.Navigation.Abstractions;
-using BlazorNexsus.Navigation.DTOs;
-using BlazorNexsus.Navigation.Internal;
-using BlazorNexsus.Navigation.Models;
-using BlazorNexsus.Navigation.Repositories;
+﻿using BlazorNexsus.Navigation.Repositories;
+using BlazorNexsus.Navigation.URIMapping;
+using BlazorNexsus.Navigation.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.JSInterop;
@@ -92,8 +89,6 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
     public T CurrentPage => PathMapper.GetPageKeyFromRoute(_routes, _navigationManager.Uri);
 
     public IReadOnlyDictionary<T, string> Routes { get; }
-    
-    public Task<NavigationInfo<T>> PreviousPage { get; }
 
     public event EventHandler<LocationChangedEventArgs> LocationChanged
     {

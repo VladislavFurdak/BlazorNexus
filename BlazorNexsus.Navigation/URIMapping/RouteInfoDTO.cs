@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace BlazorNexsus.Navigation.Internal;
+namespace BlazorNexsus.Navigation.URIMapping;
 
-public class RouteInfoDTO
+internal class RouteInfoDTO
 {
     public string Route { get; set; }
     public IList<string> RouteSegments { get; set; }

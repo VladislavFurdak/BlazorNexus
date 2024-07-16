@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 [assembly: InternalsVisibleTo("BlazorNexus.UnitTests")]
 
-namespace BlazorNexsus.Navigation;
+namespace BlazorNexsus.Navigation.Utils;
 
 internal static class UriUtils
 {

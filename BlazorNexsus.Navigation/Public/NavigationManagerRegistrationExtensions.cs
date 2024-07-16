@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using BlazorNexsus.Navigation.Abstractions;
+using BlazorNexsus.Navigation.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorNexsus.Navigation
