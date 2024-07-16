@@ -67,7 +67,7 @@ But, be sure, that
  /** Simple use: navigate the page **/
  <button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
 
- /** Complex use **/
+ /** Complex use, open a special offer page with a bunch of parameters, give the ability to go back with saving of query string params **/
  @{
         Dictionary<string,string> navigationParams =  new()
         {
@@ -84,13 +84,13 @@ But, be sure, that
 
     <button @onclick="() => _navigationManager.Go(
                 pageKey: Routes.SpecialOffer,
-                newTab: true,
+                newTab: false,
                 backPage: Routes.Cart, 
                 navigationParams,
                 queryStringParams)">Check Special Offer</button>
 ```
 
-And on the SpecialOffer page:
+And on the Special Offer page:
 ```c#
 
 @using BlazorNexsus.Navigation
@@ -99,22 +99,31 @@ And on the SpecialOffer page:
 
 @if (hasBackPage)
 {
-    <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.Home)">Go Back</button>
+    <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.Home, preserveQueryString : true)">Go Back</button>
 }
 
+@{
+}
+
+@if (utm_campaign is "weekab")
+{
+    <div>Special offer !</div>
+}
 
 @code {
-      private bool hasBackPage = false;
+    private bool hasBackPage = false;
+    private string utm_campaign = string.empty;
 
-      protected override async Task OnInitializedAsync()
-      {
-      hasBackPage = await _navigationManager.HasBackPage();
-      }
+    protected override async Task OnInitializedAsync()
+    {
+        hasBackPage = await _navigationManager.HasBackPage();
+        utm_campaign = _navigationManager.GetQueryStringParam<string>("utm_campaign");
+    }
 }
 
 ```
 
-Top donators:
+Thanks for dontas:
 
 ⭐Mykhailo Rospopchuk
 ⭐Іnna Terletskaya
