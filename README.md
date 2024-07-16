@@ -3,6 +3,29 @@
 # BlazorNexus
 The new era of Blazor routing 
 
+
+## Installing
+
+To install the package add the following line to you csproj file replacing x.x.x with the latest version number (found at the top of this file):
+
+```
+<PackageReference Include="BlazorNexsus.Navigation" Version="x.x.x" />
+```
+
+You can also install via the .NET CLI with the following command:
+
+```
+dotnet add package BlazorNexsus.Navigation
+```
+
+If you're using Jetbrains Rider or Visual Studio you can also install via the built in NuGet package manager.
+
+
+
+
+
+
+
 Top donators:
 
 ⭐Mykhailo Rospopchuk
