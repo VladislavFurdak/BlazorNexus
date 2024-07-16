@@ -1,8 +1,8 @@
 ﻿namespace BlazorNexsus.Navigation;
 
-public class NexusNavigationOptions<T> where T : Enum
+public class NexusNavigationOptions<T> where T : struct, Enum
 {
-    public required T PageKey { get; set; }
+    public T PageKey { get; set; }
     public bool NewTab { get; set; } = false;
     public T? BackPage { get; set; }
     public IReadOnlyDictionary<string, string>? NavigationParams { get; set; } = null;

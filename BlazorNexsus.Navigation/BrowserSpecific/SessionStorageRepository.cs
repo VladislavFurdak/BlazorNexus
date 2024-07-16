@@ -61,7 +61,7 @@ public class SessionStorageRepository : ISessionStorageRepository
         CheckForInProcessRuntime();
         try
         {
-            _jSInProcessRuntime.InvokeVoidAsync("sessionStorage.removeItem", key);
+            await _jSInProcessRuntime.InvokeVoidAsync("sessionStorage.removeItem", key);
         }
         catch (Exception exception)
         {

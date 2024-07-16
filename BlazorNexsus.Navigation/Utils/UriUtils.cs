@@ -45,7 +45,7 @@ internal static class UriUtils
         if (queryParams != null)
         {
             var queryParamsTransformed = queryParams.Select(x =>
-                new KeyValuePair<string, object?>(x.Key, x.Value)).ToDictionary();
+                new KeyValuePair<string, object?>(x.Key, x.Value)).ToDictionary(t => t.Key, t => t.Value);
             uri = _navigationManager.GetUriWithQueryParameters(uri, queryParamsTransformed);
         }
 
