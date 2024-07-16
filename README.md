@@ -64,12 +64,55 @@ But, be sure, that
 @using BlazorNexsus.Navigation
 @inject INavigationManager<Routes> _navigationManager
 
- /** Simple use **/
+ /** Simple use: navigate the page **/
  <button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
-}
+
+ /** Complex use **/
+ @{
+        Dictionary<string,string> navigationParams =  new()
+        {
+            ["sectionId"] = "777",
+            ["couponId"] = "49CEAE43-2004-45D1-8716-6EA0EFC407AC"
+        };
+
+        Dictionary<string,string> queryStringParams =  new()
+        {
+            ["utm_source"] = "email",
+            ["utm_campaign"] = "weekab"
+        };
+    }
+
+    <button @onclick="() => _navigationManager.Go(
+                pageKey: Routes.SpecialOffer,
+                newTab: true,
+                backPage: Routes.Cart, 
+                navigationParams,
+                queryStringParams)">Check Special Offer</button>
 ```
 
+And on the SpecialOffer page:
+```c#
 
+@using BlazorNexsus.Navigation
+@inject INavigationManager<Routes> _navigationManager
+
+
+@if (hasBackPage)
+{
+    <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.Home)">Go Back</button>
+}
+
+
+@code {
+      private bool hasBackPage = false;
+
+      protected override async Task OnInitializedAsync()
+      {
+      hasBackPage = await _navigationManager.HasBackPage();
+      }
+}
+
+```
 
 Top donators:
 
