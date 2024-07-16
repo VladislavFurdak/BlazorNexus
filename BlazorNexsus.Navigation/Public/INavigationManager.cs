@@ -4,9 +4,13 @@ namespace BlazorNexsus.Navigation;
 
 public interface INavigationManager<T> where T : struct, Enum
 {
+    /// <summary>
+    /// Navigate to a page
+    /// </summary>
+    /// <param name="pageKey">Enum key of the page</param>
     void Go(T pageKey);
     
-    Task Go(T pageKey, NexusNavigationOptions<T> options);
+    Task Go(NexusNavigationOptions<T> options);
 
     Task Go(
         T pageKey,

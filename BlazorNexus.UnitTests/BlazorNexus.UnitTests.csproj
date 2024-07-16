@@ -8,6 +8,7 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <RootNamespace>UnitTests</RootNamespace>
+        <EnableDefaultItems>false</EnableDefaultItems>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +23,23 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BlazorNexsus.Navigation\BlazorNexsus.Navigation.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="Dummy\NavigationManagerMock.cs" />
+      <Compile Include="Dummy\SessionStorageRepositoryMock.cs" />
+      <Compile Include="Data\Pages.cs" />
+      <Compile Include="Data\Routes.cs" />
+      <Compile Include="GlobalUsings.cs" />
+      <Compile Include="Tests\NavigationManagerGoBackTests.cs" />
+      <Compile Include="Tests\NavigationManagerParametersTests.cs" />
+      <Compile Include="Tests\UriUtilsTests.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Routing">
+        <HintPath>..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.7\Microsoft.AspNetCore.Routing.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

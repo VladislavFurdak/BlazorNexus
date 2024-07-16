@@ -9,9 +9,9 @@
 Welcome to your new app.
 
 <div style="display:flex; flex-direction: column; gap: 16px; width: 340px;">
-    <button @onclick="() => _navigationManager.Go(
-        Routes.CounterPage,
-        new NexusNavigationOptions<Routes>{BackPage = Routes.HomePage})">Go Counter With Back Option
+    <button @onclick="() => _navigationManager.Go(new NexusNavigationOptions<Routes>{
+                    PageKey= Routes.CounterPage,
+                    BackPage = Routes.HomePage})">Go Counter With Back Option
     </button>
     
     <button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>

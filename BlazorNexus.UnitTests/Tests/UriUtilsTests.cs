@@ -1,16 +1,10 @@
-using BlazorNexsus.Navigation;
 using BlazorNexsus.Navigation.Utils;
 using FluentAssertions;
 
-namespace UnitTests;
+namespace UnitTests.Tests;
 
-public class Tests
+public class UriUtilsTests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void CallReplaceRouteParams()
     {

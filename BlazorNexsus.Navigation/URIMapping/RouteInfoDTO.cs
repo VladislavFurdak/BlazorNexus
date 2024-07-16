@@ -9,6 +9,8 @@ internal class RouteInfoDTO
 
     public bool RouteMatchesUri(string UriSegments)
     {
+        //TODO fix issue with https://localhostcom/seg name
+        
         var getOnlySegmentsRegExpression = new Regex(@"(?<!\?.+)(?<=\/)[\w-]+(?=[/\r\n?]|$)");
 
         //get only segments between / after the domain name

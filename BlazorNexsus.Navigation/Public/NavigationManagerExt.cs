@@ -21,7 +21,7 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
     {
         _navigationManager = navigationManager;
         _jsRuntime = jsRuntime;
-        _routes = RouteMapper.MapRoutes<T>(new[] {typeof(T).Assembly});
+        _routes = RouteMapper.MapRoutes<T>(new[] {typeof(T).Assembly}); //TODO !
         _backPageRepository = backPageRepository;
     }
     
@@ -32,9 +32,9 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
         _navigationManager.NavigateTo(processedRoute);
     }
     
-    public async Task Go(T pageKey, NexusNavigationOptions<T> options)
+    public async Task Go(NexusNavigationOptions<T> options)
     {
-        await Go(pageKey, options.NewTab, options.BackPage, options.NavigationParams, options.QueryParams);
+        await Go(options.PageKey, options.NewTab, options.BackPage, options.NavigationParams, options.QueryParams);
     }
 
     public async Task Go(
@@ -64,7 +64,6 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
             _navigationManager.NavigateTo(uri);
         }
     }
-
 
     public async Task Back(T fallBackPageKey, bool preserveQueryString = true)
     {

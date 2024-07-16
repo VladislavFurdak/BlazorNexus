@@ -8,7 +8,7 @@ namespace BlazorNexsus.Navigation.Utils;
 
 internal static class UriUtils
 {
-    public static string ReplaceRouteParams(string sourceRouteUri, IReadOnlyDictionary<string, string> queryParams)
+    public static string ReplaceRouteParams(string sourceRouteUri, IReadOnlyDictionary<string, string>? queryParams)
     {
      //   var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?\/?}";
      var routeParamTemplate = @"{([a-zA-Z0-9]+)(\?)?(?::([a-zA-Z]+)(\?)?)?}";
@@ -17,11 +17,14 @@ internal static class UriUtils
         foreach (Match match in result)
         {
             string? template = null;
-            var sucess = queryParams.TryGetValue(match.Groups[1].Value, out template);
-
-            if (!sucess)
+            var param = match.Groups[1].Value;
+            var sucess = queryParams?.TryGetValue(param, out template) ?? false;
+            
+            var isMandatory = match.Value.Contains("?}");
+            
+            if (!sucess && !isMandatory)
             {
-                throw new Exception($"Parameter {match.Groups[1].Value} is not found");
+                throw new Exception($"Parameter {param} is not found");
             }
 
             sourceRouteUri = sourceRouteUri.Replace(match.Value, template ?? string.Empty);
@@ -36,11 +39,7 @@ internal static class UriUtils
         IReadOnlyDictionary<string, string>? navigationParams = null,
         IReadOnlyDictionary<string, string>? queryParams = null) 
     {
-
-        if (navigationParams != null)
-        {
-            uri = ReplaceRouteParams(uri, navigationParams);
-        }
+        uri = ReplaceRouteParams(uri, navigationParams);
         
         if (queryParams != null)
         {
