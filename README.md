@@ -187,5 +187,5 @@ Default values are "true"
 
 Thanks for dontas:
 
-⭐Mykhailo Rospopchuk
-⭐Іnna Terletskaya
+* ⭐Mykhailo Rospopchuk
+* ⭐Іnna Terletskaya
