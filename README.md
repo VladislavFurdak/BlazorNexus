@@ -1,7 +1,15 @@
 ![NuGet Version](https://img.shields.io/nuget/vpre/BlazorNexsus.Navigation?style=flat-square&logoColor=%23512BD4&logoSize=auto&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FBlazorNexsus.Navigation%2F)
 
 # BlazorNexus.Navigation
-The new era of Blazor routing 
+
+```
+<button @onclick="() => _nav.Go(Routes.Aiur)">Teleport on Aiur</button>
+```
+
+Why?
+1. Routing using Enums is more convenient and does not rely on URI schema changing. That approach will have less error in enterprise-scale applications.
+2. Conventions are good. Let's separate "Pages" from "Components". That makes code more readable.
+3. Do not reinvent the wheel when implementing "go on the previous page", checking which is the "Current" page, parsing query string, etc.
 
 
 ## Installing
@@ -165,14 +173,17 @@ INavigationManager<T>:
 * event LocationChanged
 * GetQueryStringParam(key)
 
-There are 2 optional parameters on registration (true is the default):
+There are 2 optional parameters on registration:
 
+```c#
 builder.Services.AddBlazorNexusNavigation<Routes>(
     pagePostfixCheck: true,
     checkUnusedKeys: true);
+```
 
-* pagePostfixCheck - Rises an exception if a razor Page with the @page attribute doesn't have a "Page" postfix in the filename.
-* checkUnusedKeys - Rises an exception if some of the Enums don't have appropriate pages.
+* pagePostfixCheck - on "true" rises an exception if a razor Page with the @page attribute doesn't have a "Page" postfix in the filename.
+* checkUnusedKeys - on "true" raise an exception if some of the Enums don't have appropriate pages.
+Default values are "true"
 
 Thanks for dontas:
 
