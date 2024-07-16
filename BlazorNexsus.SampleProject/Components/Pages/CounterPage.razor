@@ -12,7 +12,7 @@
 
 @if (hasBackPage)
 {
-    <button class="btn btn-primary" @onclick="GoBack">Go Back</button>
+    <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.HomePage)">Go Back</button>
 }
 
 @code {
@@ -28,10 +28,4 @@
     {
         hasBackPage = await _navigationManager.HasBackPage();
     }
-    
-    private void GoBack()
-    {
-        _navigationManager.Back(fallBackPageKey: Routes.CounterPage);
-    }
-
 }

@@ -13,9 +13,10 @@ public class RouteInfoDTO
 
         //get only segments between / after the domain name
         var incomingSegments = getOnlySegmentsRegExpression.Matches(UriSegments).Select(x => x.Value).ToList();
-
-        //trivial case - length doesn't match
-        if (RouteSegments.Count != incomingSegments.Count)
+        
+        var onlyMandatorySegments = RouteSegments.Count(x => !x.Contains('?'));
+        if(onlyMandatorySegments != incomingSegments.Count &&  //with optional params
+           RouteSegments.Count != incomingSegments.Count)  //normal
         {
             return false;
         }

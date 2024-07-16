@@ -9,6 +9,28 @@
 
 Welcome to your new app.
 
-<button @onclick="() => _navigationManager.Go(Routes.CounterPage,new NexusNavigationOptions<Routes>{BackPage = Routes.HomePage} )">Go Counter With Back Option</button>
-<button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
-<button @onclick="() => _navigationManager.Go(Routes.CounterPage,true)">Go Counter on new tab</button>
+<div style="display:flex; flex-direction: column; gap: 16px; width: 340px;">
+    <button @onclick="() => _navigationManager.Go(
+        Routes.CounterPage,
+        new NexusNavigationOptions<Routes>{BackPage = Routes.HomePage})">Go Counter With Back Option
+    </button>
+    
+    <button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
+    <button @onclick="() => _navigationManager.Go(Routes.CounterPage,true)">Go Counter on New Tab</button>
+   
+    @{
+        Dictionary<string,string> queryString = new() {{"q", "counter"}};
+    }
+    
+    <button @onclick="() => _navigationManager.Go(pageKey: Routes.CounterPage,  queryParams: queryString)">
+        Go Counter with query string params
+    </button>
+
+    @{
+        Dictionary<string,string> navParam = new() {{"ClientId", Guid.NewGuid().ToString()}};
+    }
+    
+    <button @onclick="() => _navigationManager.Go(pageKey: Routes.WeatherPage,  navigationParams: navParam)">
+        Go Weather with navigation params
+    </button>
+</div>

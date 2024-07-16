@@ -30,20 +30,13 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
     
     public void Go(T pageKey)
     {
-        _navigationManager.NavigateTo(_routes[pageKey].Route);
+        var route = _routes[pageKey].Route;
+        var processedRoute = UriUtils.RemoveOptionalParams(route);
+        _navigationManager.NavigateTo(processedRoute);
     }
     
-    public async Task Go(T pageKey, NexusNavigationOptions<T>? options = null)
+    public async Task Go(T pageKey, NexusNavigationOptions<T> options)
     {
-        await _backPageRepository.PopBackPage();
-        
-        var uri = _routes[pageKey].Route;
-        if (options is null)
-        {
-            _navigationManager.NavigateTo(uri);
-            return;
-        }
-
         await Go(pageKey, options.NewTab, options.BackPage, options.NavigationParams, options.QueryParams);
     }
 
@@ -55,23 +48,23 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
         IReadOnlyDictionary<string, string>? queryParams = null)
     {
         await _backPageRepository.PopBackPage();
-        
-        var uri = _routes[pageKey].Route;
 
-       var uriComposed = UriUtils.ComposeUri(uri, _navigationManager, navigationParams, queryParams);
+       var uri = _routes[pageKey].Route;
+       uri = UriUtils.ComposeUri(uri, _navigationManager, navigationParams, queryParams);
+       uri = UriUtils.RemoveOptionalParams(uri);
         
         if (backPage != null)
         {
-            _backPageRepository.SetBackPage(backPage.Value);
+            await _backPageRepository.SetBackPage(backPage.Value);
         }
 
         if (newTab)
         {
-            await _jsRuntime.InvokeVoidAsync("open", uriComposed, "_blank");
+            await _jsRuntime.InvokeVoidAsync("open", uri, "_blank");
         }
         else
         {
-            _navigationManager.NavigateTo(uriComposed);
+            _navigationManager.NavigateTo(uri);
         }
     }
 

@@ -10,7 +10,9 @@ internal static class UriUtils
 {
     public static string ReplaceRouteParams(string sourceRouteUri, IReadOnlyDictionary<string, string> queryParams)
     {
-        var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?}";
+     //   var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?\/?}";
+     var routeParamTemplate = @"{([a-zA-Z0-9]+)(\?)?(?::([a-zA-Z]+)(\?)?)?}";
+     
         var result = Regex.Matches(sourceRouteUri, routeParamTemplate);
         foreach (Match match in result)
         {
@@ -55,4 +57,39 @@ internal static class UriUtils
         var uriObj = new System.Uri(uri);
         return uriObj.Query.Replace("?", "");
     }
+
+    public static string RemoveOptionalParams(string uri)
+    {
+        //{ClientId:guid?}
+        //{ClientId:guid}
+        //{ClientId?}
+        //{ClientId}
+        
+        //Group0 ClientId
+        //Group1 guid
+        //Group2 ?
+        var pattern = @"{([a-zA-Z0-9]+)(\?)?(?::([a-zA-Z]+)(\?)?)?}";
+        MatchCollection matches = Regex.Matches(uri, pattern);
+        
+        foreach (Match match in matches)
+        {
+            var groups = ((IList<Group>) match.Groups)
+                .Skip(1) // remove match, left only groups
+                .Where(x => !string.IsNullOrEmpty(x.Value)).ToList();
+            
+            if (groups.Count == 3 ||  //{ClientId:guid?}
+                (groups.Count == 2 && groups[1].Value == "?"))  //{ClientId?}
+            {
+                uri = uri.Replace(match.Value, string.Empty).TrimEnd('/'); //remove non-mandatory parameter
+            }
+            else
+            {
+                throw new Exception($"Parameter {match.Value} is not set");
+            }
+        }
+
+        return uri;
+    }
+    
+    
 }

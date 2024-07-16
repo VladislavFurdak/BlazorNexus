@@ -6,11 +6,13 @@ namespace BlazorNexsus.Navigation.Abstractions;
 
 public interface INavigationManager<T> where T : struct, Enum
 {
-    Task Go(T pageKey, NexusNavigationOptions<T>? options = null);
+    void Go(T pageKey);
+    
+    Task Go(T pageKey, NexusNavigationOptions<T> options);
 
     Task Go(
         T pageKey,
-        bool newTab,
+        bool newTab = false,
         T? backPage = null,
         IReadOnlyDictionary<string, string>? navigationParams = null,
         IReadOnlyDictionary<string, string>? queryParams = null);

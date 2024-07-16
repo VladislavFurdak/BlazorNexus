@@ -1,4 +1,4 @@
-﻿@page "/weatherRoute"
+﻿@page "/weatherRoute/{ClientId:guid?}"
 @inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
@@ -6,6 +6,13 @@
 <h1>Weather</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
+
+@if (ClientId.HasValue)
+{
+    <div>
+        Hi, your Id is "@ClientId.Value"
+    </div>
+}
 
 @if (forecasts == null)
 {
@@ -39,6 +46,10 @@ else
 }
 
 @code {
+    
+    [Parameter]
+    public Guid? ClientId { get; set; }
+    
     private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
