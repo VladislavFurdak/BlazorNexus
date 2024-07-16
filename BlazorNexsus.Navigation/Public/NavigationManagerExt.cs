@@ -4,6 +4,7 @@ using BlazorNexsus.Navigation.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.JSInterop;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace BlazorNexsus.Navigation;
 
@@ -69,10 +70,11 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
     {
         T? backPage = await _backPageRepository.PopBackPage();
         
-        var qs = preserveQueryString ? UriUtils.ExtractQueryString(_navigationManager.Uri) : string.Empty;
+        var qs = preserveQueryString ? "?" + UriUtils.ExtractQueryString(_navigationManager.Uri) : string.Empty;
        
         var route = backPage.HasValue ? _routes[backPage.Value].Route : _routes[fallBackPageKey].Route;
-        route += qs;
+        
+        route = route.TrimEnd('/') + qs;
        
         _navigationManager.NavigateTo(route);
     }
@@ -93,5 +95,17 @@ public class NavigationManagerExt<T> : INavigationManager<T> where T : struct, E
     {
         add => _navigationManager.LocationChanged += value;
         remove => _navigationManager.LocationChanged -= value;
+    }
+    
+    public PType? GetQueryStringParam<PType>(string key)
+    {
+        var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
+        
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(key, out var stringValues))
+        {
+            return UriUtils.ConvertValue<PType>(stringValues);
+        }
+
+        return default(PType);
     }
 }

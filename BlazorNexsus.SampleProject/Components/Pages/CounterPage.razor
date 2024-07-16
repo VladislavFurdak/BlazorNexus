@@ -14,6 +14,16 @@
 {
     <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.HomePage)">Go Back</button>
 }
+@{
+    var qsParam = _navigationManager.GetQueryStringParam<string>("q");
+}
+
+@if (qsParam is not null)
+{
+    <div style="margin-top: 20px;">
+        Query string param: ["q"]='@qsParam'
+    </div>
+}
 
 @code {
     private int currentCount = 0;

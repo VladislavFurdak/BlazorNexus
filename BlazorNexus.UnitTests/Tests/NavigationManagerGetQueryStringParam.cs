@@ -9,7 +9,7 @@ using UnitTests.Dummy;
 
 namespace UnitTests.Tests;
 
-public class NavigationManagerGoBackTests
+public class NavigationManagerGetQueryStringParam
 {
     private string initUri = "http://nexus.com/";
     private INavigationManager<Routes> _navigationManagerExt = null!;
@@ -24,17 +24,18 @@ public class NavigationManagerGoBackTests
     }
     
     [Test] 
-    public async Task GoPage_ThenBackToSame()
+    public async Task GetQueryStringParam_CheckCasting()
     { 
-        //TODO fix issue with https://localhostcom/seg name
-        
         _backPageRepository = new BackPageRepository<Routes>(new SessionStorageRepositoryMock());
         _navigationManager = new NavigationManagerMock(initUri);
         _navigationManagerExt = new NavigationManagerExt<Routes>(_navigationManager, _jsRuntime, _backPageRepository);
 
         var queryStringParams = new Dictionary<string, string>()
         {
-            {"utm", "1111"}
+            {"utm", "1111"},
+            {"utm2", "BFG"},
+            {"utm3", "30-05-1991"},
+            {"utm4", "6A7263BC-7177-4533-A3C8-AC99C24229C1"}
         };
         
         await _navigationManagerExt.Go(
@@ -43,17 +44,11 @@ public class NavigationManagerGoBackTests
             Routes.AboutMePage, 
             null, 
             queryStringParams);
-        _navigationManagerExt.CurrentPage.Should().Be(Routes.AboutPage);
-        
-        var hasBackPage = await _navigationManagerExt.HasBackPage();
-        hasBackPage.Should().Be(true);
-        
-        await _navigationManagerExt.Back(fallBackPageKey:Routes.ProductPage);
-        
-        hasBackPage = await _navigationManagerExt.HasBackPage();
 
-        hasBackPage.Should().Be(false);
-        _navigationManagerExt.CurrentPage.Should().Be(Routes.AboutMePage);
+        var qs = _navigationManagerExt.GetQueryStringParam<int>("utm");
+        var qs2 = _navigationManagerExt.GetQueryStringParam<string>("utm2");
+        var qs3 = _navigationManagerExt.GetQueryStringParam<DateTime>("utm3");
+        var qs4 = _navigationManagerExt.GetQueryStringParam<Guid>("utm4");
     }
 
 }

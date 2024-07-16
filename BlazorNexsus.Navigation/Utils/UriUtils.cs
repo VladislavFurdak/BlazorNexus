@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 
@@ -10,7 +11,7 @@ internal static class UriUtils
 {
     public static string ReplaceRouteParams(string sourceRouteUri, IReadOnlyDictionary<string, string>? queryParams)
     {
-     //   var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?\/?}";
+     // var routeParamTemplate = @"{([a-zA-Z_]+)\??(?::\w+)?\/?}";
      var routeParamTemplate = @"{([a-zA-Z0-9]+)(\?)?(?::([a-zA-Z]+)(\?)?)?}";
      
         var result = Regex.Matches(sourceRouteUri, routeParamTemplate);
@@ -89,6 +90,18 @@ internal static class UriUtils
 
         return uri;
     }
-    
+
+    public static T? ConvertValue<T>(string value)
+    {
+        var converter = TypeDescriptor.GetConverter(typeof (T));
+        if (converter.CanConvertTo(typeof (T)) && converter.CanConvertFrom(typeof(string)))
+        {
+            return (T)converter.ConvertFromString(value)!;
+        }
+        else
+        {
+            return default(T?);
+        }
+    }
     
 }

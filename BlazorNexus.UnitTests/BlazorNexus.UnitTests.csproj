@@ -31,6 +31,7 @@
       <Compile Include="Data\Pages.cs" />
       <Compile Include="Data\Routes.cs" />
       <Compile Include="GlobalUsings.cs" />
+      <Compile Include="Tests\NavigationManagerGetQueryStringParam.cs" />
       <Compile Include="Tests\NavigationManagerGoBackTests.cs" />
       <Compile Include="Tests\NavigationManagerParametersTests.cs" />
       <Compile Include="Tests\UriUtilsTests.cs" />
