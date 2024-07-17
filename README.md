@@ -180,6 +180,8 @@ builder.Services.AddBlazorNexusNavigation<Routes>(
 * checkUnusedKeys - on "true" raise an exception if some of the Enums don't have appropriate pages.
 Default values are "true"
 
+Enjoy 🍉🍉🍉
+
 Thanks for dontas:
 
 * ⭐Mykhailo Rospopchuk
