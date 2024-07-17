@@ -186,9 +186,11 @@ Default values are "true"
 ## Product roadmap (v.1.0 release)
 * Fix some minor issues, have a bug when the domain part doesn't have ":" or "." symbols
 * Add more unit tests: spaces in the query string, special symbols, different types of URIs, etc
-* Add more possible operations with Query String params
+* Add more unit tests: a page has multiple @page attributes
+* Add more possible operations related to Query String params
 * Add the ability to use a raw query string in the Go method
 * Ability to get the underlying NavigationManager class
+* Navigation to anchor
 * Add support for BlazorServer
 
 Enjoy 🍉🍉🍉
