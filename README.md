@@ -76,7 +76,8 @@ And add INavigationManager<Routes> in your razor views
  /** Simple use: navigate the page **/
  <button @onclick="() => _navigationManager.Go(Routes.CounterPage)">Go Counter</button>
 
- /** Complex use, open a special offer page with a bunch of parameters, give the ability to go back with saving of query string params **/
+ /** Complex usage: opens a special offer page with a bunch of parameters,
+gives the ability to go back with preserving of query string params **/
  @{
         Dictionary<string,string> navigationParams =  new()
         {
