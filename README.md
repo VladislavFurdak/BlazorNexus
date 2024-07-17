@@ -57,9 +57,7 @@ public enum Routes
 }
 ```
 for 
-CounterPage.razor
-HomePage.razor
-WeatherPage.razor
+![image](https://github.com/user-attachments/assets/bb629ce6-e6f4-4510-86b1-0a68f9b9aff9)
 
 But, be sure, that
 1. Each Razor Page file has a navigation @page attribute
