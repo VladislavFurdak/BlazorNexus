@@ -65,7 +65,7 @@ But, be sure, that
 2. The Name is the same as for Enum
 3. The *.razor files have a mandatory "Page" postfix. 
 
-And add INavigationManager<Routes> in your razor views
+And add INavigationManager<T> in your razor views
 
 ## Examples of usage
 
