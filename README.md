@@ -185,7 +185,7 @@ Default values are "true"
 
 Enjoy 🍉🍉🍉
 
-Thanks for dontas:
+Thanks for donates:
 
 * ⭐Mykhailo Rospopchuk
 * ⭐Іnna Terletskaya
