@@ -15,7 +15,7 @@ Why?
 
 ## Installing
 
-To install the package add the following line to you csproj file replacing x.x.x with the latest version number (found at the top of this file):
+To install the package add the following line to your csproj file replacing x.x.x with the latest version number (found at the top of this file):
 
 ```
 <PackageReference Include="BlazorNexsus.Navigation" Version="x.x.x" />
@@ -27,7 +27,7 @@ You can also install via the .NET CLI with the following command:
 dotnet add package BlazorNexsus.Navigation
 ```
 
-If you're using Jetbrains Rider or Visual Studio you can also install via the built in NuGet package manager.
+If you're using Jetbrains Rider or Visual Studio you can also install via the built-in NuGet package manager.
 
 ## Setup
 
