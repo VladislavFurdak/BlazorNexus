@@ -169,7 +169,7 @@ INavigationManager<T>:
 * CurrentPage
 * Routes
 * event LocationChanged
-* GetQueryStringParam(key)
+* GetQueryStringParam<T>(key)
 
 There are 2 optional parameters on registration:
 
