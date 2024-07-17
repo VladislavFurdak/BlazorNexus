@@ -112,9 +112,6 @@ And on the Special Offer page:
     <button class="btn btn-primary" @onclick="() => _navigationManager.Back(fallBackPageKey: Routes.Home, preserveQueryString : true)">Go Back</button>
 }
 
-@{
-}
-
 @if (utm_campaign is "weekab")
 {
     <div>Special offer !</div>
