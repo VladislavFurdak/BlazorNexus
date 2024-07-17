@@ -183,6 +183,14 @@ builder.Services.AddBlazorNexusNavigation<Routes>(
 * checkUnusedKeys - on "true" raise an exception if some of the Enums don't have appropriate pages.
 Default values are "true"
 
+## Product roadmap (v.1.0 release)
+* Fix some minor issues, have a bug when the domain part doesn't have ":" or "." symbols
+* Add more unit tests: spaces in the query string, special symbols, different types of URIs, etc
+* Add more possible operations with Query String params
+* Add the ability to use a raw query string in the Go method
+* Ability to get the underlying NavigationManager class
+* Add support for BlazorServer
+
 Enjoy 🍉🍉🍉
 
 Thanks for donates:
