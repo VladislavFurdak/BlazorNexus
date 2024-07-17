@@ -1,4 +1,4 @@
-![NuGet Version](https://img.shields.io/nuget/vpre/BlazorNexsus.Navigation?style=flat-square&logoColor=%23512BD4&logoSize=auto&link=https://www.nuget.org/packages/BlazorNexsus.Navigation/)
+![NuGet Version](https://img.shields.io/nuget/v/BlazorNexsus.Navigation?link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FBlazorNexsus.Navigation%2F)
 
 # BlazorNexus.Navigation
 ![image](https://github.com/user-attachments/assets/34d83f00-ab1f-4a55-89d2-9f5e7cf68a98)
