@@ -134,15 +134,15 @@ And on the Special Offer page:
 Another example of creating a menu with an active element:
 ```c#
 @using BlazorNexsus.Navigation
-@inject INavigationManager<Routes> _navigitaionManager
+@inject INavigationManager<Routes> _navigationManager
 
 <div class="nav-item px-3">
-    <a @onclick="() => _navigitaionManager.Go(Routes.HomePage)" class="@GetActiveClassFor(Routes.HomePage) nav-link">
+    <a @onclick="() => _navigationManager.Go(Routes.HomePage)" class="@GetActiveClassFor(Routes.HomePage) nav-link">
         <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
     </a>
 </div>
 <div class="nav-item px-3">
-    <a @onclick="() => _navigitaionManager.Go(Routes.Cart)" class="@GetActiveClassFor(Routes.Cart) nav-link">
+    <a @onclick="() => _navigationManager.Go(Routes.Cart)" class="@GetActiveClassFor(Routes.Cart) nav-link">
         <span class="bi bi-cart-check-fill" aria-hidden="true"></span> Cart
     </a>
  </div>
